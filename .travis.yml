@@ -26,10 +26,5 @@ script:
 
 # Caching
 cache:
-  timeout: 1000
   directories:
   - $HOME/.nuget/packages
-
-# Success/failure handling
-#after_success:
-#after_failure:
