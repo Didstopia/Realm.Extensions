@@ -3,8 +3,8 @@ language:
   - csharp
 
 # Enable running inside a container (container-based infrastructure)
-sudo:
-  - false
+#sudo:
+#  - false
 
 # Default linux distribution
 dist:
@@ -16,7 +16,7 @@ env:
 
 # Build script
 script:
-  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild {MSBUILD_SOLUTION} /nowarn:MSB3277
+  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild ${MSBUILD_SOLUTION} /nowarn:MSB3277
 
 # Build configurations to test against
 matrix:
