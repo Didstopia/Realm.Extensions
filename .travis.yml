@@ -17,9 +17,19 @@ dist:
 
 # Global environment variables
 env:
-- MSBUILD_CONFIG="Debug"
-- MSBUILD_CONFIG="Release"
+- MSBUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
+- MSBUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
 
 # Build script
 script:
   - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild RealmExtensions.sln /nowarn:MSB3277
+
+# Caching
+cache:
+  timeout: 1000
+  directories:
+  - $HOME/.nuget/packages
+
+# Success/failure handling
+#after_success:
+#after_failure:
