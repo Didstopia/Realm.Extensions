@@ -1,8 +1,36 @@
-language: csharp
+# Main language/toolchain
+language:
+  - csharp
+
+# Enable running inside a container (container-based infrastructure)
+sudo:
+  - false
+
+# Default linux distribution
+dist:
+  - trusty
+
+# Mono versions to test against
 mono:
   - latest
   - 5.0.1
 
+# Build script
 script:
-  - msbuild /p:Configuration=Debug /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln /nowarn:MSB3277
-  - msbuild /p:Configuration=Release /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln /nowarn:MSB3277
+  - msbuild /p:Configuration=$BUILD_CONFIG /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln /nowarn:MSB3277
+
+# Build configurations to test against
+matrix:
+  include:
+
+    # Linux
+    - os: linux
+      env: BUILD_CONFIG=Debug
+    - os: linux
+      env: BUILD_CONFIG=Release
+
+    # macOS
+    - os: osx
+      env: BUILD_CONFIG=Debug
+    - os: osx
+      env: BUILD_CONFIG=Release
