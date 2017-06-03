@@ -10,14 +10,13 @@ sudo:
 dist:
   - trusty
 
-# Mono versions to test against
-mono:
-  - latest
-  - 5.0.1
+# Global environment variables
+env:
+  - MSBUILD_SOLUTION="RealmExtensions/RealmExtensions.sln"
 
 # Build script
 script:
-  - msbuild /p:Configuration=$BUILD_CONFIG /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln /nowarn:MSB3277
+  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild {MSBUILD_SOLUTION} /nowarn:MSB3277
 
 # Build configurations to test against
 matrix:
@@ -25,12 +24,24 @@ matrix:
 
     # Linux
     - os: linux
-      env: BUILD_CONFIG=Debug
+      env: MSBUILD_CONFIG=Debug
+      mono:
+        - latest
+        - 5.0.1
     - os: linux
-      env: BUILD_CONFIG=Release
+      env: MSBUILD_CONFIG=Release
+      mono:
+        - latest
+        - 5.0.1
 
     # macOS
     - os: osx
-      env: BUILD_CONFIG=Debug
+      env: MSBUILD_CONFIG=Debug
+      mono:
+        - latest
+        - 5.0.1
     - os: osx
-      env: BUILD_CONFIG=Release
+      env: MSBUILD_CONFIG=Release
+      mono:
+        - latest
+        - 5.0.1
