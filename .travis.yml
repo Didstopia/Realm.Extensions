@@ -4,13 +4,13 @@ mono:
   - latest
   - 5.0.1
 
-install:
-  - nuget update -self
-  - nuget restore RealmExtensions/RealmExtensions.sln
+#install:
+#  - nuget update -self
+#  - nuget restore RealmExtensions/RealmExtensions.sln
 
-after_install:
-  - msbuild /version
-  #- nuget help | grep "Version" ## FIXME: This just halts on Travis, but why?
+#after_install:
+#  - msbuild /version
+#  #- nuget help | grep "Version" ## FIXME: This just halts on Travis, but why?
 
 script:
   - msbuild /p:Configuration=Release /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln
