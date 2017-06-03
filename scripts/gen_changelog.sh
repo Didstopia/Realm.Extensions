@@ -29,6 +29,9 @@ cd ../
 echo "Generating CHANGELOG.md.."
 github_changelog_generator > /dev/null
 
+# Remove the last line (optional attribution)
+sed -i '' -e '$ d' CHANGELOG.md
+
 # Commit the changelog if it changed
 if [[ $(git status --porcelain | grep CHANGELOG.md | wc -l) -gt 0 ]]; then
 	echo "Committing modified CHANGELOG.md.."

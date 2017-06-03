@@ -3,19 +3,13 @@ A collection of useful extensions for Realm (C#).
 
 **NOTICE:** This is still a _work in progress_.
 
----
-
 ## Example usage
 
 _TODO_
 
----
-
 ## Development
 
 See [DEVELOPMENT.md](https://github.com/Didstopia/Realm.Extensions/blob/master/DEVELOPMENT.md).
-
----
 
 ## License
 
