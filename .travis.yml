@@ -17,9 +17,9 @@ dist:
 
 # Global environment variables
 env:
-  - MSBUILD_SOLUTION="RealmExtensions/RealmExtensions.sln"
-  - MSBUILD_CONFIG="Release"
+- MSBUILD_CONFIG="Debug"
+- MSBUILD_CONFIG="Release"
 
 # Build script
 script:
-  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild ${MSBUILD_SOLUTION} /nowarn:MSB3277
+  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln /nowarn:MSB3277
