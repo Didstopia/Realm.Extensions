@@ -5,7 +5,7 @@ A collection of useful extensions for Realm (C#).
 
 ---
 
-## Usage
+## Example usage
 
 _TODO_
 
