@@ -1,11 +1,13 @@
 osx_image: xcode8.3
 language: csharp
-mono:
-  - latest
-  - 5.0.1.1
+solution: RealmExtensions/RealmExtensions.sln
+#mono:
+#  - latest
+#  - 5.0.1.1
 
 before_install:
   - nuget | grep "Version"
+
 install:
   - nuget restore RealmExtensions/RealmExtensions.sln
 
