@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Realm
+Tools/Realm*.dll
+
 # Garbage
 .DS_Store
 Thumbs.db
