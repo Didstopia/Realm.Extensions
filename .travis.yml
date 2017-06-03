@@ -1,12 +1,12 @@
 osx_image: xcode8.3
 language: csharp
-solution: RealmExtensions/RealmExtensions.sln
+solution: RealmExtensions.sln
 install:
-  - cd RealmExtensions
+  - cd "$TRAVIS_BUILD_DIR/RealmExtensions"
   - nuget restore RealmExtensions.sln
 script:
-  - cd RealmExtensions
-  - msbuild /p:Configuration=Release RealmExtensions.sln
+  - cd "$TRAVIS_BUILD_DIR/RealmExtensions"
+  - msbuild /p:Configuration=Release /t:Restore,Rebuild RealmExtensions.sln
 mono:
   - latest
   - 5.0.1.1
