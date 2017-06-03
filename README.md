@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Didstopia/Realm.Extensions.svg?branch=master)](https://travis-ci.org/Didstopia/Realm.Extensions)
+
 # Realm.Extensions
 A collection of useful extensions for Realm (C#).
 
