@@ -2,15 +2,15 @@ language: csharp
 solution: RealmExtensions/RealmExtensions.sln
 mono:
   - latest
-  - 5.0.1.1
+  - 5.0.1
 
 install:
-  - nuget update -this || true
+  - nuget update -self
   - nuget restore RealmExtensions/RealmExtensions.sln
 
-before_script:
+after_install:
   - msbuild /version
-  - nuget help | grep "Version"
+  #- nuget help | grep "Version" ## FIXME: This just halts on Travis, but why?
 
 script:
   - msbuild /p:Configuration=Release /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln
