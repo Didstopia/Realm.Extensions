@@ -4,14 +4,13 @@ mono:
   - latest
   - 5.0.1.1
 
-before_install:
-  - msbuild /version || true
-  - nuget help | grep "Version" || true
-  - nuget update -this || true
-  - nuget help | grep "Version" || true
-
 install:
+  - nuget update -this || true
   - nuget restore RealmExtensions/RealmExtensions.sln
+
+before_script:
+  - msbuild /version
+  - nuget help | grep "Version"
 
 script:
   - msbuild /p:Configuration=Release /t:Restore,Rebuild RealmExtensions/RealmExtensions.sln
