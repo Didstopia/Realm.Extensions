@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace RealmExtensions
+namespace Didstopia.RealmExtensions
 {
     public class Class1
     {
+        
     }
 }
