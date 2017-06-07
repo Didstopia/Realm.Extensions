@@ -1,9 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <RootNamespace>Didstopia.RealmExtensions</RootNamespace>
     <AssemblyName>Didstopia.RealmExtensions</AssemblyName>
+    <PackOnBuild>true</PackOnBuild>
+    <Authors>Didstopia</Authors>
+    <PackageLicenseUrl>https://github.com/Didstopia/Realm.Extensions/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Owners>Didstopia</Owners>
+    <PackageProjectUrl>https://github.com/Didstopia/Realm.Extensions</PackageProjectUrl>
+    <Summary>Provides several extensions for Realm, including Dictionary and Array support.</Summary>
+    <PackageTags>Realm, Realm Extensions, C#, Xamarin, Forms, Xamarin.Forms, Realm.NET, dotnet, helper, utility</PackageTags>
+    <Title>Realm Extensions</Title>
+    <Description>Provides several extensions for Realm, including Dictionary and Array support.</Description>
+    <PackageId>Didstopia.RealmExtensions</PackageId>
+    <PackageVersion>0.0.1</PackageVersion>
+    <ReleaseVersion>0.0.1</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -17,6 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Realm" Version="1.4.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.248" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
