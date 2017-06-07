@@ -22,6 +22,8 @@ env:
 
 # Build script
 script:
+  # NOTE: We need to run "nuget restore" when not targeting .NET Standard
+  - nuget restore
   - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild RealmExtensions.sln /nowarn:MSB3277
 
 # Caching
