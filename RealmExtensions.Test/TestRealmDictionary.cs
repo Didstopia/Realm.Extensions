@@ -2,7 +2,7 @@
 using Realms;
 using NUnit.Framework;
 
-namespace Didstopia.RealmExtensions.Tests
+namespace Didstopia.RealmExtensions.Test
 {
     [TestFixture]
     public class TestRealmDictionary : TestBase

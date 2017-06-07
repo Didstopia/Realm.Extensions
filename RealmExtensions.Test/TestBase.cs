@@ -1,11 +1,9 @@
 ﻿using System;
 using Realms;
-using NUnit;
 using NUnit.Framework;
 
-namespace Didstopia.RealmExtensions.Tests
+namespace Didstopia.RealmExtensions.Test
 {
-    [TestFixture]
     public class TestBase
     {
         Realm _realm;
@@ -13,7 +11,11 @@ namespace Didstopia.RealmExtensions.Tests
         [OneTimeSetUp]
         public virtual void OneTimeSetUpAttribute()
         {
-
+            _realm = Realm.GetInstance();
+            Assert.IsNotNull(_realm, "Realm was null before one time set up");
+			_realm.Dispose();
+			_realm = null;
+			Assert.IsNull(_realm, "Realm was not null after one time set up");
         }
 
         [SetUp]

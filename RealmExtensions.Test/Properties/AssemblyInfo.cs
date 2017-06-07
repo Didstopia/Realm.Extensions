@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("RealmExtensions.Tests")]
+[assembly: AssemblyTitle("RealmExtensions.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Didstopia")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("2017 Didstopia")]
-[assembly: AssemblyTrademark("2017 Didstopia")]
+[assembly: AssemblyCopyright("")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

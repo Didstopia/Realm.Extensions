@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FF6D200-A1FC-4E3E-A093-F86A89A5C56B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>RealmExtensions.Tests</RootNamespace>
-    <AssemblyName>RealmExtensions.Tests</AssemblyName>
+    <ProjectGuid>{C32ECBE7-49B9-4CB6-B682-CDE1437A5C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Didstopia.RealmExtensions.Test</RootNamespace>
+    <AssemblyName>Didstopia.RealmExtensions.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <ReleaseVersion>0.0.1</ReleaseVersion>
   </PropertyGroup>
@@ -21,6 +21,8 @@
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -29,12 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunitlite">
-      <HintPath>..\packages\NUnitLite.3.7.1\lib\net45\nunitlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Didstopia.RealmExtensions">
-      <HintPath>..\RealmExtensions\bin\Debug\netstandard1.6\Didstopia.RealmExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetCross.Memory.Unsafe">
       <HintPath>..\packages\DotNetCross.Memory.Unsafe.0.2.3.4\lib\netstandard1.0\DotNetCross.Memory.Unsafe.dll</HintPath>
     </Reference>
@@ -116,11 +112,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestRealmArray.cs" />
     <Compile Include="TestRealmDictionary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealmExtensions\RealmExtensions.csproj">
+      <Project>{2F8AF1F0-13DC-412C-A7DE-F42FB9E93C7B}</Project>
+      <Name>RealmExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
