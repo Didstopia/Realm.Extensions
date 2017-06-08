@@ -2,12 +2,14 @@
 
 namespace Didstopia.RealmExtensions.Exceptions
 {
-    public class DictionaryException : BaseException
+    public class InvalidTypeException : BaseException
     {
-        public DictionaryException()
+        #region Constructors
+        public InvalidTypeException(Type type) : base($"{type.ToString()} is not a valid Realm type.")
         {
             
         }
+        #endregion
 
         public override string TestProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

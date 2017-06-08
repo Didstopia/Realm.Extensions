@@ -1,29 +1,22 @@
-﻿﻿﻿using System;
-using Xunit;
+﻿﻿using System;
+using NUnit.Framework;
 using Realms;
 using Didstopia.RealmExtensions;
 
-namespace Didstopia.RealmExtensions.Test
+namespace Didstopia.RealmExtensions.Test.UnitTests
 {
-    [Collection("RealmCollection")]
-    public class TestRealmDictionary
+    //[TestFixture]
+    public class TestRealmDictionary : TestBase
 	{
-        #region Private Properties
-        RealmFixture _fixture { get; set; }
-        #endregion
-
         #region Constructor
-        public TestRealmDictionary(RealmFixture realmFixture)
+        public TestRealmDictionary()
         {
             Console.WriteLine("TestRealmDictionary()");
-
-            Assert.NotNull(realmFixture);
-            _fixture = realmFixture;
         }
         #endregion
 
         #region Test Methods
-        [Fact]
+        /*[Test]
 	    public void TestSupportedTypes()
 	    {
 	        Console.WriteLine("TestRealmDictionary::Testing supported types");
@@ -41,18 +34,18 @@ namespace Didstopia.RealmExtensions.Test
 	        Validate<DateTimeOffset, DateTimeOffset>();
 	    }
 
-	    [Fact]
+	    [Test]
 	    public void TestUnsupportedTypes()
 	    {
 	        Console.WriteLine("TestRealmDictionary::Testing unsupported types");
 
 	        Validate<uint, uint>();
 	        Validate<DateTime, DateTime>();
-	    }
+	    }*/
 	    #endregion
 
 	    #region Utility Methods
-	    void Validate<T1, T2>()
+	    void Validate<T1, T2>(T1 value1, T2 value2)
 	    {
 	        Console.WriteLine($"TestRealmDictionary::Validating types {typeof(T1).ToString()} and {typeof(T2).ToString()}");
 
@@ -60,10 +53,10 @@ namespace Didstopia.RealmExtensions.Test
 	        Assert.NotNull(dictionary);
 	        Assert.NotNull(dictionary.Get());
 
-            Assert.Empty(dictionary.Get());
-	        dictionary.Get().Add(default(T1), default(T2));
-	        Assert.NotEmpty(dictionary.Get());
-	    }
+            Assert.IsTrue(dictionary.Get().Count == 0, $"Expected dictionary count to be 0 but it was ${dictionary.Get().Count} instead");
+            dictionary.Get().Add(value1, value2);
+            Assert.IsFalse(dictionary.Get().Count == 0, $"Expected dictionary count to not be 0 but it was ${dictionary.Get().Count} instead");
+        }
 	    #endregion
 	}
 }

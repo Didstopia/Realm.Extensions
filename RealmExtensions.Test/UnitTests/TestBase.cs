@@ -1,20 +1,23 @@
-﻿﻿using System;
+﻿using System;
+using NUnit.Framework;
 using Realms;
-using Didstopia.RealmExtensions;
 
-namespace Didstopia.RealmExtensions.Test
+namespace Didstopia.RealmExtensions.Test.UnitTests
 {
-    public class RealmFixture : IDisposable
+    public class TestBase
     {
-        public Realm RealmDatabase { get; private set; }
-
-        public RealmFixture()
+        public TestBase()
         {
-            Console.WriteLine("RealmFixture(): Creating RealmDatabase");
+            Console.WriteLine("TestBase()");
+        }
 
-            System.Environment.SetEnvironmentVariable("OSVersion", "");
+        [SetUp]
+        public virtual void SetUp()
+        {
+            Console.WriteLine("TestBase::SetUp()");
 
             var config = new RealmConfiguration("Didstopia.RealmExtensions.Test.realm");
+
             //config.ObjectClasses = new[] { typeof(RealmDictionary), typeof(RealmArray) };
 
             try
@@ -29,7 +32,8 @@ namespace Didstopia.RealmExtensions.Test
 
             try
             {
-                RealmDatabase = Realm.GetInstance(config);
+                var realm = Realm.GetInstance(config);
+                Assert.IsNotNull(realm);
             }
             catch (Exception e)
             {
@@ -38,12 +42,10 @@ namespace Didstopia.RealmExtensions.Test
             }
         }
 
-        public void Dispose()
+        [TearDown]
+        public virtual void TearDown()
         {
-            Console.WriteLine("RealmFixture(): Flushing and disposing RealmDatabase");
-            //RealmDatabase.RemoveAll();
-            //RealmDatabase.Dispose();
-            //RealmDatabase = null;
+            Console.WriteLine("TestBase::TearDown()");
         }
     }
 }

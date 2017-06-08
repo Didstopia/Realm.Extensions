@@ -9,7 +9,16 @@ namespace Didstopia.RealmExtensions
         [PrimaryKey]
         public string Id { get; set; }
 
-        Dictionary<T1, T2> _dictionary;
+        // TODO: How do we store values/keys? Using a new type of RealmObject for each value/key type?
+
+        [Ignored]
+        Dictionary<T1, T2> _dictionary { get; set; }
+
+        [MapTo("Keys")]
+        IList<RealmExtensionsObject> _keys { get; set; }
+
+        [MapTo("Values")]
+        IList<RealmExtensionsObject> _values { get; set; }
 
         // TODO: Figure out how to do this, there's plenty of options:
         // - Should we go for some sort of factory methods?

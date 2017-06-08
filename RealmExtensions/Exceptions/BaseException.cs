@@ -13,15 +13,15 @@ namespace Didstopia.RealmExtensions.Exceptions
         #endregion
 
         #region Constructors
-        protected BaseException() : base()
+        public BaseException() : base()
         {
         }
 
-        protected BaseException(string message) : base(message)
+        public BaseException(string message) : base(message)
         {
         }
 
-        protected BaseException(string message, Exception inner) : base(message, inner)
+        public BaseException(string message, Exception inner) : base(message, inner)
         {
         }
         #endregion
