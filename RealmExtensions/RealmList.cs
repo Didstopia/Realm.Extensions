@@ -24,36 +24,80 @@ namespace Didstopia.RealmExtensions
 
         // TODO: Make sure that these aren't included in Realm!
         #region IList
-        bool IList.IsFixedSize => false;
-        bool IList.IsReadOnly => _values.IsReadOnly;
-        int ICollection.Count => _values.Count;
-        bool ICollection.IsSynchronized => throw new NotImplementedException(); // TODO: What's this?
-        object ICollection.SyncRoot => throw new NotImplementedException(); // TODO: What's this?
-        object IList.this[int index] { get => _values[index]; set => _values[index] = value; }
+        public bool IsFixedSize => false;
+        public bool IsReadOnly => _values.IsReadOnly;
+        public int Count => _values.Count;
+        public bool IsSynchronized => throw new NotImplementedException(); // TODO: What's this?
+        public T SyncRoot => throw new NotImplementedException(); // TODO: What's this?
+        public T this[int index]
+        {
+            get
+            {
+                if (IsIndexInsideBounds(index))
+                {
+                    return _values[index].Value;
+                }
+                else throw new NullReferenceException($"Index {index} is out of bounds (current count is {_values.Count()})");
+            }
+            set
+            {
+                // TODO: How would this work? Check for null at index like above, I guess?
+                _values[index].Value = value;
+            }
+        }
 
-        int IList.Add(object value) => _values.Add(value);
+        public int Add(T value)
+        {
+            var newObject = new RealmExtensionsObject<T> { Value = value };
+            _values.Add(newObject);
+            return _values.IndexOf(newObject);
+        }
 
-        void IList.Clear() => _values.Clear();
+        public void Clear() => _values.Clear();
 
-        bool IList.Contains(object value) => ContainsRealmExtensionObjectForValue(value);
+        public bool Contains(T value) => GetContains(value);
 
-        int IList.IndexOf(object value) => _values.IndexOf(value);
+        public int IndexOf(T value) => GetIndexOf(value);
 
-        void IList.Insert(int index, object value) => _values.Insert(index, value);
+        public void Insert(int index, T value) => _values.Insert(index, value);
 
-        void IList.Remove(object value) => _values.Remove(value);
+        public void Remove(T value) => _values.Remove(value);
 
-        void IList.RemoveAt(int index) => _values.RemoveAt(index);
+        public void RemoveAt(int index) => _values.RemoveAt(index);
 
-        void ICollection.CopyTo(Array array, int index) => _values.CopyTo(array, index);
+        public void CopyTo(Array array, int index) => _values.CopyTo(array, index);
 
-        IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
+        public IEnumerator GetEnumerator() => _values.GetEnumerator(); // TODO: This needs to return r.Value enumerator
         #endregion
 
         #region Utility Methods
-        bool ContainsRealmExtensionObjectForValue(object value)
+        T GetAtIndex(int index)
         {
-            _values.Where(r => r.Type == value.GetType());
+            // TODO: Implement
+        }
+
+        bool GetContains(T value)
+        {
+            foreach (var r in _values)
+                if (r.Value.Equals(value))
+                    return true;
+            
+            return false;
+        }
+
+		int GetIndexOf(T value)
+		{
+			foreach (var r in _values)
+				if (r.Value.Equals(value))
+                    return _values.IndexOf(r);
+
+			return -1;
+		}
+
+        bool IsIndexInsideBounds(int index)
+        {
+            // TODO: Implement
+
         }
         #endregion
     }

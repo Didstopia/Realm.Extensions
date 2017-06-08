@@ -55,11 +55,10 @@ namespace Didstopia.RealmExtensions.Test.UnitTests
 
             var list = new RealmList<T>();
             Assert.NotNull(list);
-            Assert.NotNull(list.Get());
 
-            Assert.IsTrue(list.Get().Count == 0, $"Expected list count to be 0 but it was ${list.Get().Count} instead");
-            list.Get().Add(value);
-            Assert.IsFalse(list.Get().Count == 0, $"Expected list count to not be 0 but it was ${list.Get().Count} instead");
+            Assert.IsTrue(list.Count == 0, $"Expected list count to be 0 but it was ${list.Count} instead");
+            list.Add(value);
+            Assert.IsFalse(list.Count == 0, $"Expected list count to not be 0 but it was ${list.Count} instead");
         }
         #endregion
     }
