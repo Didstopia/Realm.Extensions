@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Realms;
 
 namespace Didstopia.RealmExtensions
@@ -12,26 +13,29 @@ namespace Didstopia.RealmExtensions
         public int Length { get; set; }
 
         [MapTo("Values")]
-        IList<RealmExtensionsObject> _values { get; set; }
+        IList<RealmExtensionsObject<T>> _values { get; set; }
 
         public RealmList()
         {
+            Console.WriteLine("RealmList()");
+
             Id = Guid.NewGuid().ToString();
         }
 
+        // TODO: Make sure that these aren't included in Realm!
         #region IList
         bool IList.IsFixedSize => false;
         bool IList.IsReadOnly => _values.IsReadOnly;
         int ICollection.Count => _values.Count;
-        bool ICollection.IsSynchronized => throw new NotImplementedException();
-        object ICollection.SyncRoot => throw new NotImplementedException();
+        bool ICollection.IsSynchronized => throw new NotImplementedException(); // TODO: What's this?
+        object ICollection.SyncRoot => throw new NotImplementedException(); // TODO: What's this?
         object IList.this[int index] { get => _values[index]; set => _values[index] = value; }
 
         int IList.Add(object value) => _values.Add(value);
 
         void IList.Clear() => _values.Clear();
 
-        bool IList.Contains(object value) => _values.Contains(value);
+        bool IList.Contains(object value) => ContainsRealmExtensionObjectForValue(value);
 
         int IList.IndexOf(object value) => _values.IndexOf(value);
 
@@ -44,6 +48,13 @@ namespace Didstopia.RealmExtensions
         void ICollection.CopyTo(Array array, int index) => _values.CopyTo(array, index);
 
         IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
+        #endregion
+
+        #region Utility Methods
+        bool ContainsRealmExtensionObjectForValue(object value)
+        {
+            _values.Where(r => r.Type == value.GetType());
+        }
         #endregion
     }
 }

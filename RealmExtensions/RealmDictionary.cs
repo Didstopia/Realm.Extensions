@@ -15,10 +15,10 @@ namespace Didstopia.RealmExtensions
         Dictionary<T1, T2> _dictionary { get; set; }
 
         [MapTo("Keys")]
-        IList<RealmExtensionsObject> _keys { get; set; }
+        IList<RealmExtensionsObject<T1>> _keys { get; set; }
 
         [MapTo("Values")]
-        IList<RealmExtensionsObject> _values { get; set; }
+        IList<RealmExtensionsObject<T2>> _values { get; set; }
 
         // TODO: Figure out how to do this, there's plenty of options:
         // - Should we go for some sort of factory methods?
