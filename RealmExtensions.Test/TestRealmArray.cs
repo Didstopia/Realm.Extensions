@@ -1,32 +1,69 @@
-﻿using System;
+﻿﻿﻿using System;
+using Xunit;
 using Realms;
-using NUnit.Framework;
+using Didstopia.RealmExtensions;
 
 namespace Didstopia.RealmExtensions.Test
 {
-    [TestFixture]
-    public class TestRealmArray : TestBase
+    [Collection("RealmCollection")]
+    public class TestRealmArray
     {
-        [Test]
+        #region Private Properties
+        RealmFixture _fixture { get; set; }
+        #endregion
+
+        #region Constructor
+        public TestRealmArray(RealmFixture realmFixture)
+        {
+            Console.WriteLine("TestRealmArray()");
+
+            Assert.NotNull(realmFixture);
+            _fixture = realmFixture;
+        }
+        #endregion
+
+        #region Test Methods
+        [Fact]
         public void TestSupportedTypes()
         {
-            var boolArray = new RealmArray<bool>();
-            var charArray = new RealmArray<char>();
-            var byteArray = new RealmArray<byte>();
-            var shortArray = new RealmArray<short>();
-            var intArray = new RealmArray<int>();
-            var longArray = new RealmArray<long>();
-            var floatArray = new RealmArray<float>();
-            var doubleArray = new RealmArray<double>();
+            Console.WriteLine("TestRealmArray::Testing supported types");
 
-            var stringArray = new RealmArray<string>();
-            var dateTimeOffsetArray = new RealmArray<DateTimeOffset>();
+            Validate<bool>();
+            Validate<char>();
+            Validate<byte>();
+            Validate<short>();
+            Validate<int>();
+            Validate<long>();
+            Validate<float>();
+            Validate<double>();
+
+            Validate<string>();
+            Validate<DateTimeOffset>();
         }
 
-        [Test]
+        [Fact]
         public void TestUnsupportedTypes()
         {
-            var uintArray = new RealmArray<uint>();
+            Console.WriteLine("TestRealmArray::Testing unsupported types");
+
+            Validate<uint>();
+            Validate<DateTime>();
         }
+        #endregion
+
+        #region Utility Methods
+        void Validate<T>()
+        {
+            Console.WriteLine($"TestRealmArray::Validating type {typeof(T).ToString()}");
+
+            var array = new RealmArray<T>();
+            Assert.NotNull(array);
+            Assert.NotNull(array.Get());
+
+            Assert.Empty(array.Get());
+            array.Get()[array.Get().Length] = default(T);
+            Assert.NotEmpty(array.Get());
+        }
+        #endregion
     }
 }

@@ -22,7 +22,7 @@ env:
 
 # Build script
 script:
-  # NOTE: We need to run "nuget restore" when not targeting .NET Standard
+  # NOTE: Our test project currently uses .NET, so requires nuget to restore packages
   - nuget restore
   - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild RealmExtensions.sln /nowarn:MSB3277
 
