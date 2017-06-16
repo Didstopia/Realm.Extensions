@@ -70,7 +70,7 @@ namespace Didstopia.RealmExtensions
         {
             Console.WriteLine("SetValue(): " + value);
 
-            ValidateSupportedType(value);
+            ValidateSupportedType(typeof(T));
 
             var t = value;
 

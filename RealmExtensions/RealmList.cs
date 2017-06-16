@@ -28,8 +28,9 @@ namespace Didstopia.RealmExtensions
         public bool IsReadOnly => _values.IsReadOnly;
         public int Count => _values.Count;
         public bool IsSynchronized => throw new NotImplementedException(); // TODO: What's this?
-        public T SyncRoot => throw new NotImplementedException(); // TODO: What's this?
-        public T this[int index]
+        object ICollection.SyncRoot => throw new NotImplementedException(); // TODO: What's this?
+
+        object IList.this[int index]
         {
             get
             {
@@ -42,7 +43,7 @@ namespace Didstopia.RealmExtensions
             set
             {
                 // TODO: How would this work? Check for null at index like above, I guess?
-                _values[index].Value = value;
+                _values[index].Value = (T)value;
             }
         }
 
@@ -74,6 +75,7 @@ namespace Didstopia.RealmExtensions
         T GetAtIndex(int index)
         {
             // TODO: Implement
+            return (T)new object();
         }
 
         bool GetContains(T value)
@@ -97,7 +99,32 @@ namespace Didstopia.RealmExtensions
         bool IsIndexInsideBounds(int index)
         {
             // TODO: Implement
+            return false;
+        }
 
+        public int Add(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int IndexOf(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(int index, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(object value)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
