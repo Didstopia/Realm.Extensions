@@ -31,6 +31,13 @@ cache:
   directories:
   - $HOME/.nuget/packages
 
+# Don't build tags to avoid recursion
+branches:
+  except:
+    - /^[0-9]/
+  only:
+    - master
+
 # Notifications
 notifications:
   webhooks:
@@ -39,8 +46,3 @@ notifications:
     on_success: change
     on_failure: always
     on_start: never
-
-# Branches to include
-branches:
-  only:
-    - master
