@@ -1,6 +1,5 @@
 # Main language/toolchain
-language:
-  - csharp
+language: csharp
 
 # Mono versions to test against
 mono:
@@ -8,12 +7,10 @@ mono:
   - 5.0.1
 
 # Enable running inside a container (container-based infrastructure)
-sudo:
-  - false
+sudo: false
 
 # Default linux distro (Ubuntu 14.04)
-dist:
-  - trusty
+dist: trusty
 
 # Global environment variables
 env:
