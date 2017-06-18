@@ -28,10 +28,8 @@ cache:
   directories:
   - $HOME/.nuget/packages
 
-# Don't build tags to avoid recursion
+# Only build the master branch
 branches:
-  except:
-    - /^[0-9]/
   only:
     - master
 
