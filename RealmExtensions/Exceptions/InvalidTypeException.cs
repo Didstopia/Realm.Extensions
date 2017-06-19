@@ -5,7 +5,7 @@ namespace Didstopia.RealmExtensions.Exceptions
     public class InvalidTypeException : BaseException
     {
         #region Constructors
-        public InvalidTypeException(Type type) : base($"{type.ToString()} is not a valid Realm type.")
+        public InvalidTypeException(Type type) : base($"{type.ToString()} is not a supported Realm object type.")
         {
             
         }

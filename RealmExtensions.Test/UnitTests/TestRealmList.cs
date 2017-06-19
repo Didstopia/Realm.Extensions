@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Realms;
 using Didstopia.RealmExtensions;
+using Didstopia.RealmExtensions.Exceptions;
 
 namespace Didstopia.RealmExtensions.Test.UnitTests
 {
@@ -43,8 +44,8 @@ namespace Didstopia.RealmExtensions.Test.UnitTests
         {
             Console.WriteLine("TestRealmList::Testing unsupported types");
 
-            Validate<uint>(2147483647);
-            Validate<DateTime>(DateTime.Now);
+            Assert.That(() => Validate<uint>(2147483647), Throws.TypeOf<InvalidTypeException>());
+            Assert.That(() => Validate<DateTime>(DateTime.Now), Throws.TypeOf<InvalidTypeException>());
         }
         #endregion
 
@@ -53,12 +54,29 @@ namespace Didstopia.RealmExtensions.Test.UnitTests
         {
             Console.WriteLine($"TestRealmList::Validating type {typeof(T).ToString()} with value {value}");
 
+            // Test list creation
             var list = new RealmList<T>();
-            Assert.NotNull(list);
+            Assert.NotNull(list, "Expected list to not be null");
 
+            // Test adding value to the list
             Assert.IsTrue(list.Count == 0, $"Expected list count to be 0 but it was ${list.Count} instead");
             list.Add(value);
             Assert.IsFalse(list.Count == 0, $"Expected list count to not be 0 but it was ${list.Count} instead");
+
+            // Test saving the list
+            Realm.Write(() =>
+            {
+                var savedList = Realm.Add(list);
+                Assert.NotNull(savedList, "Expected saved list to not be null");
+                Assert.IsTrue(savedList.IsManaged, $"Expected saved list IsManaged to be true, but it was ${savedList.IsManaged} instead");
+                Assert.IsTrue(savedList.IsValid, $"Expected saved list IsValid to be true, but it was ${savedList.IsValid} instead");
+
+                // Test loading the list
+                var loadedList = Realm.Find<RealmList<T>>(savedList.Id);
+                Assert.NotNull(loadedList, "Expected loaded list to not be null");
+                Assert.IsTrue(loadedList.IsManaged, $"Expected loaded list IsManaged to be true, but it was ${loadedList.IsManaged} instead");
+                Assert.IsTrue(loadedList.IsValid, $"Expected loaded list IsValid to be true, but it was ${loadedList.IsValid} instead");
+            });
         }
         #endregion
     }

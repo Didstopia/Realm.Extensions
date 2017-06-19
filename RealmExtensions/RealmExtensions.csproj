@@ -11,6 +11,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
   </ItemGroup>
