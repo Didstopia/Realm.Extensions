@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NETStandardImplicitPackageVersion>2.0.0-preview1-25301-01</NETStandardImplicitPackageVersion>
+    <ReleaseVersion>1.0.0-beta1</ReleaseVersion>
+    <RootNamespace>Didstopia.RealmExtensions</RootNamespace>
+    <AssemblyName>Didstopia.RealmExtensions</AssemblyName>
+    <PackageId>Didstopia.RealmExtensions</PackageId>
+    <PackageVersion>1.0.0-beta1</PackageVersion>
+    <Authors>Didstopia</Authors>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <NeutralLanguage>es-US</NeutralLanguage>
+    <PackageLicenseUrl>https://github.com/Didstopia/Realm.Extensions/blob/master/LICENSE.md</PackageLicenseUrl>
+    <Owners>Didstopia</Owners>
+    <PackageProjectUrl>https://github.com/Didstopia/Realm.Extensions</PackageProjectUrl>
+    <PackageReleaseNotes>Initial beta release</PackageReleaseNotes>
+    <Summary>A collection of useful extensions for Realm .NET</Summary>
+    <PackageTags>realm .net dotnet extension dictionary realmobject database</PackageTags>
+    <Title>Realm Extensions</Title>
+    <Description>A collection of useful extensions for Realm .NET</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Realm" Version="1.5.0" />
+  </ItemGroup>
+</Project>
